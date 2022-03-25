@@ -1,6 +1,32 @@
-# Module with the fuctions needed for AIDA ANNs
-# Updated to work with tensoflow 1.12 and tf.keras
-
+# Copyright (c) 2022 Nuno Lourenço - Instituto de Telecomunicações.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# ==============================================================================
+''' Module with the fuctions needed for AIDA ANNs.
+Used in SMACD 2018 paper: N. Lourenço et al., "On the Exploration of Promising Analog IC 
+Designs via Artificial Neural Networks," 2018 15th International Conference on Synthesis, 
+Modeling, Analysis and Simulation Methods and Applications to Circuit Design (SMACD), 
+Prague, 2018, pp. 133-136.
+doi: 10.1109/SMACD.2018.8434896
+ 
+ - Updated to work with tensoflow 1.2 and tf.keras
+'''
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
@@ -13,9 +39,7 @@ from sklearn.preprocessing import PolynomialFeatures
 # DATA
 # ---------------------------------------------------
 def scale_data(X, Y):
-    """ 
-        scales data and computes scaler
-    """
+    """ Scales data and computes scaler.  """
     poly = PolynomialFeatures(2)
     X_scaler = StandardScaler()
     Y_scaler = MinMaxScaler((0.2, 0.8))
@@ -31,11 +55,8 @@ def scale_data(X, Y):
     return (X_scaled, Y_scaled, scaler_cache)
 
 def unscale_Y(Y_scaled, scache):
-    """ 
-    Scales outputs to original values 
-    """
+    """ Scales outputs to original values."""
     Y = scache["Y_scaler"].inverse_transform(Y_scaled)
-    
     return Y
 
 def scale_X(X, scache):
@@ -207,7 +228,7 @@ def format_circuit(y, labels, minVal=None, maxVal=None):
 
 
 
-# Grid Search Setup 
+# Grid Search Setup @deprecated 
 def grid_search (dims = [(15, 60, 120, 12),(15, 30, 60, 12),(15, 120, 240,120,12)],
                  activations = ['sigmoid', 'tanh', 'relu'],
                  reg_lambdas = [0.001, 0.0003, 0.0001, 0.00003, 0.00001],

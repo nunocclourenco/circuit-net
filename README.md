@@ -9,3 +9,8 @@ N. Lourenço et al., "On the Exploration of Promising Analog IC Designs via Arti
 doi: 10.1109/SMACD.2018.8434896
 URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8434896&isnumber=8434559
 
+
+
+###### Copyright (C) 2022 Nuno Lourenço - Instituto de Telecomunicações
+###### This program comes with ABSOLUTELY NO WARRANTY
+
